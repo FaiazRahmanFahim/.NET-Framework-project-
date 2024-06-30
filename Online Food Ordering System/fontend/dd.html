@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script>
+            var app = angular.module("deliveryApp", []);
+            app.controller('DeliverymanCtrl', function($scope, $http) {
+                // Assuming your API to fetch a specific deliveryman's details by ID
+                $http.get("https://localhost:44391/api/deliveryman/1").then(function(response) {
+                    $scope.deliveryman = response.data;
+                }, function(error) {
+                    console.error('Error occurred:', error);
+                });
+            });
+        </script>
+    </head>
+    <body ng-app="deliveryApp">
+        <div ng-controller="DeliverymanCtrl">
+            <h2>Deliveryman Profile</h2>
+            <p><strong>Name:</strong> {{deliveryman.Name}}</p>
+            <p><strong>Rating:</strong> {{deliveryman.Rating}}</p>
+            <p><strong>Location:</strong> {{deliveryman.Location}}</p>
+            <p><strong>Status:</strong> {{deliveryman.DeliveryManStatus}}</p>
+            <p><strong>Mobile Number:</strong> {{deliveryman.MobileNumber}}</p>
+        </div>
+    </body>
+</html>
